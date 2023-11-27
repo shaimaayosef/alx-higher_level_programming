@@ -18,8 +18,9 @@ def add_integer(a, b=98):
         >>> add_integer(3, 5)
         8
     """
-    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
-        raise TypeError("a must be an integer or float, and b must be an integer or float")
-    a = int(a)
-    b = int(b)
-    return a + b
+    if type(a) not in [int, float]:
+        raise TypeError("a must be an integer")
+    if type(b) not in [int, float]:
+        raise TypeError("b must be an integer")
+
+    return int(a) + int(b)
