@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# pylint: disable=line-too-long
 """Defines unittest for models/rectangle.py.
 """
 
