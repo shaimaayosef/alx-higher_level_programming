@@ -1,41 +1,35 @@
 #!/usr/bin/node
 class Rectangle {
-  constructor (w, h) {
-    if (w > 0 && h > 0 && Number.isInteger(w) && Number.isInteger(h)) {
-      this.width = w;
-      this.height = h;
-    } else {
-      this.width = 0;
-      this.height = 0;
+  constructor(w, h) {
+    if (w <= 0 || h <= 0 || !Number.isInteger(w) || !Number.isInteger(h)) {
+      return {}; // Create an empty object
     }
+    this.width = w;
+    this.height = h;
   }
 
-  print () {
-    let output = '';
+  print() {
     for (let i = 0; i < this.height; i++) {
+      let row = '';
       for (let j = 0; j < this.width; j++) {
-        output += 'X';
+        row += 'X';
       }
-      output += '\n';
+      console.log(row);
     }
-    console.log(output);
   }
 
-  rotate () {
-    const temp = this.width;
-    this.width = this.height;
-    this.height = temp;
+  rotate() {
+    [this.width, this.height] = [this.height, this.width];
   }
 
-  double () {
+  double() {
     this.width *= 2;
     this.height *= 2;
   }
 }
-
 class Square extends Rectangle {
-  constructor (size) {
-    super(size, size);
-  }
+    constructor(size) {
+        super(size, size);
+    }
 }
 module.exports = Square;
