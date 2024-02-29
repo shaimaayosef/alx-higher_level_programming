@@ -1,17 +1,25 @@
 #!/usr/bin/python3
-"""contains the function find_peak"""
+""" Finds Peak values """
 
 
 def find_peak(list_of_integers):
-    """finds a peak in a list of unsorted integers"""
-    li = list_of_integers
-    size = len(li)
-    if size == 0:
-        return
-    m = size // 2
-    if ((m == size - 1 or li[m] >= li[m + 1]) and
-            (m == 0 or li[m] >= li[m - 1])):
-        return li[m]
-    if m != size - 1 and li[m + 1] > li[m]:
-        return find_peak(li[m + 1:])
-    return find_peak(li[:m])
+    """Find the peak"""
+    list_l = len(list_of_integers)
+    if list_l is 0:
+        return None
+    peak = binary_search(list_of_integers, 0, list_l - 1)
+    return list_of_integers[peak]
+
+
+""" binary search algorithim """
+
+
+def binary_search(a, lo, hi):
+    """Recursive binary search of the peak"""
+    if lo >= hi:
+        return lo
+    mid = ((hi - lo) // 2) + lo
+    if a[mid] > a[mid + 1]:
+        return binary_search(a, lo, mid)
+    else:
+        return binary_search(a, mid + 1, hi)
